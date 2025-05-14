@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.ConfirmationCodePage"
+             Title="ConfirmationCodePage">
+
+    <Grid>
+
+        <ImageButton Source="{DynamicResource BackButton}"
+                     HeightRequest="{DynamicResource IconWidthSize}"
+                     WidthRequest="{DynamicResource IconHeightSize}"
+                     Command="{Binding BackCommand}"
+                     Margin="0,5,0,0"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"/>
+
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+            <Label Text="Please Enter confirmartion code:"
+                   FontSize="Large"/>
+            <!-- code input box -->
+            <Entry x:Name="code"
+                   Placeholder="Code"
+                   WidthRequest="{DynamicResource InputBoxWidth}"
+                   MaximumWidthRequest="{DynamicResource InputBoxWidth}"
+                   Text="{Binding ConfirmationCode}"/>
+            <!-- Confirmation button -->
+            <Button Text="Confirm"
+                    WidthRequest="{DynamicResource ButtonBoxWidth}"
+                    MaximumWidthRequest="{DynamicResource ButtonBoxWidth}"
+                    Command="{Binding ConfirmationCommand}"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

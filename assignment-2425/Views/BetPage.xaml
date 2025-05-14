@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:assignment_2425.ViewModels"
+             x:Class="assignment_2425.Views.BetPage"
+             Title="BetPage">
+
+
+        <ContentPage.Resources>
+            <Style TargetType="ImageButton">
+                <Setter Property="Margin" Value="0,0,0,10"/>
+                <Setter Property="HeightRequest" Value="85"/>
+                <Setter Property="WidthRequest" Value="100"/>
+            </Style>
+        </ContentPage.Resources>
+
+    <ScrollView>
+        <Grid>
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <VerticalStackLayout
+                Grid.Row="0">
+                <Label Text="Choose an amount to bet:"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0"/>
+
+                <!-- Player Balance -->
+                <Label VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Balance: "
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontAttributes="Bold"
+                                  FontSize="Subtitle"
+                                  FontFamily="GothamRounded"/>
+
+                            <Span Text="{Binding Player.Balance}"
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontAttributes="Bold"
+                                  FontSize="Subtitle"
+                                  FontFamily="GothamRounded"/>
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </VerticalStackLayout>
+            <!-- Back button -->
+            <ImageButton SemanticProperties.Description="Back"
+                         Source="{DynamicResource BackButton}"
+                         HeightRequest="{DynamicResource IconWidthSize}"
+                         WidthRequest="{DynamicResource IconHeightSize}"
+                         Command="{Binding BackCommand}"
+                         Margin="0,5,0,0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"/>
+
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Grid.Row="1">
+
+                <!--All bet options -->
+                <ImageButton Source="onefifty_chip.svg"
+                             CommandParameter="150"
+                             SemanticProperties.Description="150"
+                             Command="{Binding BetCommand}"/>
+
+                <ImageButton Source="onehundred_chip.svg"
+                             CommandParameter="100"
+                             SemanticProperties.Description="100"
+                             Command="{Binding BetCommand}"/>
+
+                <ImageButton Source="fifty_chip.svg"
+                             CommandParameter="50"
+                             SemanticProperties.Description="50"
+                             Command="{Binding BetCommand}"/>
+
+                <ImageButton Source="twentyfive_chip.svg"
+                             CommandParameter="25"
+                             SemanticProperties.Description="25"
+                             Command="{Binding BetCommand}"/>
+
+                <ImageButton Source="ten_chip.svg"
+                             CommandParameter="10"
+                             SemanticProperties.Description="10"
+                             Command="{Binding BetCommand}"/>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

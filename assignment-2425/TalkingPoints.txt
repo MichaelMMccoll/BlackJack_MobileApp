@@ -1,0 +1,70 @@
+TALKING POINTS:
+
+-Walktrought of game, basic gameplay loop 
+
+-Talking features.
+
+
+1. UX/UI
+
+Colors adhere to contrast checker whit both dark mode and light mode 
+All UI element are able to be read by screen reader + there are additional promts that are read out
+Text size is able to be changed S M L
+Dark and Light mode
+
+Screen is locked to phone viewmodel
+Custom Font
+
+2. Mobile hardwarefeatures
+
+Haptic feedback is present when typing and also enables the currenthandvalue to be read out when user starts a game
+
+Vibration is present for some buttons 
+
+A custom text to speach can also be found 
+
+All these can be disabled and enabled in settings
+
+A camera is also used for saving a users profile pic 
+
+
+3. Functionality
+
+A game loop is present and all buttons work MVVM standards have been followed
+
+A smart Dealer can be found when enableling the normal dealer game play rules
+
+Additionally hardware specific settings are stored locally in sqlLite DB
+AWS dynamoDB has been used for storing players stats (wins, losses, name, picture, balance )
+
+Images are stored on with a s3 bucket 
+Cognito is used to register users
+
+Pop ups appear if a user inputs a wrong value when siging in or login in 
+
+Additionally there is also a popup when trying to access leaderboard without being signed in 
+
+Use of dunamicresouses used for font background etc..
+
+All images used are custom and are svg 
+
+
+
+
+
+
+
+
+
+
+Basic Game Loop:
+
+Press Start
+
+Place a Bet Ranging from 10 to 150
+
+Play Against a Bot 
+
+LeaderBoard Displayes Top 10 Players 
+
+Within Settings user can log in/ Sign Up/ Change the local settings and observe stats

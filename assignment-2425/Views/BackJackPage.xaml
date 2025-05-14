@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.BackJackPage"
+             xmlns:models="clr-namespace:assignment_2425.ViewModels"
+             Title="">
+
+    <ScrollView>
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All">
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Information button -->
+            <ImageButton SemanticProperties.Description="Information"
+                         Source="{DynamicResource InformationButton}"
+                         HeightRequest="{DynamicResource IconWidthSize}"
+                         WidthRequest="{DynamicResource IconHeightSize}"
+                         Command="{Binding InformationCommand}"
+                         Margin="0,5,0,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Start"/>
+
+            <!-- Dealer List All Cards -->
+            <CollectionView x:Name="dealerCardsCollection"
+                            ItemsSource="{Binding Dealer.CurrentHand}"
+                            Margin="50"
+                            Grid.Row="0"
+                            ItemsLayout="HorizontalList"
+                            HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="0">
+                            <Image  Source="{Binding Image.Source}"
+                                    HeightRequest="110"
+                                    AutomationProperties.IsInAccessibleTree="True"
+                                    WidthRequest="85"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Player Cards all cards -->
+            <CollectionView x:Name="playerCardsCollection"
+                            ItemsSource="{Binding Player.CurrentHand}"
+                            Grid.Row="1"
+                            ItemsLayout="HorizontalList"
+                            HorizontalOptions="Center">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Image Source="{Binding Image.Source}"
+                                   AutomationProperties.IsInAccessibleTree="True"
+                                   HeightRequest="110"
+                                   WidthRequest="85"/>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid Grid.Row="2">
+                <Label Text="Bet: "
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,0"/>
+
+            </Grid>
+
+            <Grid Grid.Row="3" Padding="10" ColumnSpacing="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Hit button -->
+                <Button Text="Hit"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        BorderWidth="1"
+                        Command="{Binding GetCardCommand}"
+                        SemanticProperties.Description="Hit"/>
+
+                <!-- Bet amount button -->
+                <Image x:Name="BetImg"
+                       Source="{Binding BetImage}"
+                       SemanticProperties.Description="{Binding Player.Bet}"
+                       WidthRequest="80"
+                       HeightRequest="65"
+                       HorizontalOptions="Center"
+                       Grid.Column="1"/>
+
+                <StackLayout Orientation="Vertical"
+                             HorizontalOptions="End"
+                             Grid.Column="2"
+                             Spacing="10">
+
+                    <!-- Hold button -->
+                    <Button Text="Stand"
+                            HeightRequest="70"
+                            BorderWidth="1"
+                            Command="{Binding HoldCommand}"
+                            SemanticProperties.Description="Stand"/>
+
+                </StackLayout>
+            </Grid>
+
+            <Grid Grid.Row="4"
+                  HorizontalOptions="Center"
+                  Padding="10"
+                  ColumnSpacing="20"
+                  Margin="0,0,15,0">
+
+                <!-- Players Balance-->
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Balance: "
+                                  FontFamily="GothamRounded"
+                                  TextColor="{DynamicResource LabelTextColor}"/>
+                            <Span Text="{Binding Player.Balance}"
+                                  FontFamily="GothamRounded"
+                                  TextColor="{DynamicResource LabelTextColor}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

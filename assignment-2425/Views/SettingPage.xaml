@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.SettingPage"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:assignment_2425.ViewModels"
+             Title="SettingPage">
+
+    <ScrollView>
+        <Grid>
+
+            <ImageButton Source="{Binding BackButtonIcon}"
+                         SemanticProperties.Description="Back"
+                         HeightRequest="{DynamicResource IconWidthSize}"
+                         WidthRequest="{DynamicResource IconHeightSize}"
+                         Command="{Binding NavigateCommand}"
+                         CommandParameter="Main"
+                         Margin="0,5,0,0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Start"/>
+
+            <ImageButton Source="{Binding SunMoonIcon}"
+                         SemanticProperties.Description="Change to Dark or Light mode"
+                         HeightRequest="{DynamicResource IconWidthSize}"
+                         WidthRequest="{DynamicResource IconHeightSize}"
+                         Command="{Binding ChangeColorModeCommand}"
+                         Margin="0,5,0,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Start"/>
+
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center">
+
+                <!-- Profie image -->
+                <ImageButton x:Name="ProfileImage"
+                             SemanticProperties.Description="Profile Image"
+                             Source="{Binding Player.Imageurl}"
+                             HeightRequest="{DynamicResource ImageHeightSize}"
+                             IsEnabled="{Binding IsValuesVisible}"
+                             WidthRequest="{DynamicResource ImageWidthSize}"
+                             Command="{Binding TakePictureCommand}"/>
+
+                <!-- User name -->
+                <Entry x:Name="NameBox"
+                       SemanticProperties.Description="User name"
+                       Text="{Binding Player.Username}"
+                       IsVisible="{Binding IsValuesVisible}">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="Completed"
+                                                        Command="{Binding ChangeNameCommand}"
+                                                        CommandParameter="{Binding Text, Source={x:Reference NameBox}}" />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <!-- Players Wins losses -->
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Wins: "
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                            <Span Text="{Binding Player.Wins}"
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Losses: "
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                            <Span Text="{Binding Player.Losses}"
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Balance: "
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                            <Span Text="{Binding Player.Balance}"
+                                  TextColor="{DynamicResource LabelTextColor}"
+                                  FontFamily="GothamRounded"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <!-- User Login buttons -->
+                <Button x:Name="LogInButton"
+                        Text="Login"
+                        IsVisible="{Binding IsLoggedIn}"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Login"
+                        Margin="0,5,0,5"/>
+
+                <Button x:Name="SignUpButton"
+                        Text="Sign Up"
+                        IsVisible="{Binding IsLoggedIn}"
+                        Command="{Binding NavigateCommand}"
+                        CommandParameter="Signup"/>
+
+                <Button x:Name="SignOutButton"
+                        Text="Sign Out"
+                        IsVisible="{Binding IsValuesVisible}"
+                        Command="{Binding SignOutCommand}"
+                        Margin="0,5,0,5"/>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <!-- Toggles for local settings -->
+                    <Label Text="Text To Speach"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <CheckBox x:Name="TTS"
+                              SemanticProperties.Description="Text to speach"
+                              IsChecked="{Binding Settings.TextToSpeech}" 
+                              Grid.Row="0"
+                              Grid.Column="1">
+                        <CheckBox.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="CheckedChanged"
+                                                            Command="{Binding SaveLocalSettingsCommand}"/>
+                        </CheckBox.Behaviors>
+                    </CheckBox>
+
+
+                    <Label Text="Vibration"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <CheckBox x:Name="Vibration"
+                              Grid.Row="1" Grid.Column="1"
+                              SemanticProperties.Description="Vibration"
+                              IsChecked="{Binding Settings.Vibration}">
+                        <CheckBox.Behaviors>
+                            <toolkit:EventToCommandBehavior EventName="CheckedChanged"
+                                                                Command="{Binding SaveLocalSettingsCommand}"/>
+                        </CheckBox.Behaviors>
+                    </CheckBox>
+
+                    <Label Text="Haptic Feedback"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <CheckBox x:Name="HapticFeedBack"
+                              Grid.Row="2" Grid.Column="1"
+                              SemanticProperties.Description="Haptic feedback"
+                              IsChecked="{Binding Settings.HapticFeedback}">
+                        <CheckBox.Behaviors>
+                        <toolkit:EventToCommandBehavior EventName="CheckedChanged"
+                                                                Command="{Binding SaveLocalSettingsCommand}"/>
+                        </CheckBox.Behaviors>
+                    </CheckBox>
+
+                    <Label Text="Hard Mode"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <CheckBox x:Name="HardMode"
+                              Grid.Row="3" Grid.Column="1"
+                              SemanticProperties.Description="Hard Mode"
+                              IsChecked="{Binding Blackjack.SmartPlayer.IsSmart}"/>
+
+                </Grid>
+                <VerticalStackLayout MaximumWidthRequest="131">
+                    <Label Text="Font Size:"
+                           Grid.Row="4"
+                           Margin="0,0,0,10"
+                           HorizontalOptions="Center"/>
+                    <HorizontalStackLayout>
+                        <Button Text="S"
+                                SemanticProperties.Description="Change the text size to small"
+                                Command="{Binding ChangeFontSizeCommand}"
+                                CommandParameter="S"
+                                FontSize="Small"/>
+
+                        <Button Text="M"
+                                SemanticProperties.Description="Change the text size to medium"
+                                Command="{Binding ChangeFontSizeCommand}"
+                                CommandParameter="M"
+                                FontSize="Medium"/>
+
+                        <Button Text="L"
+                                SemanticProperties.Description="Change the text to Large"
+                                Command="{Binding ChangeFontSizeCommand}"
+                                CommandParameter="L"
+                                FontSize="Large"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+        
+    </ScrollView>
+</ContentPage>

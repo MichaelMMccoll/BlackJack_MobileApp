@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.InstructionsPage"
+             Title="InstructionsPage">
+
+    <Grid>
+        <!-- Back button -->
+        <ImageButton Source="{DynamicResource BackButton}"
+                     HeightRequest="{DynamicResource IconWidthSize}"
+                     WidthRequest="{DynamicResource IconHeightSize}"
+                     Command="{Binding NavigationCommand}"
+                     Margin="0,5,0,0"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"/>
+
+        <!-- Audio button to read out instructions -->
+        <ImageButton Source="{DynamicResource AudioButton}"
+                     HeightRequest="{DynamicResource IconWidthSize}"
+                     WidthRequest="{DynamicResource IconHeightSize}"
+                     Command="{Binding ReadCommand}"
+                     Margin="0,5,0,0"
+                     HorizontalOptions="End"
+                     VerticalOptions="Start"/>
+
+        <VerticalStackLayout Padding="20"
+                             Spacing="15"
+                             HorizontalOptions="Center">
+            <Label Text="Basic Game Loop"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+
+            <Label Text="1. Press Start"/>
+
+            <Label Text="2. Place a Bet Ranging from 10 to 150"/>
+
+            <Label Text="3. Play Against a Bot"/>
+
+            <Label Text="• Leaderboard Displays Top 10 Players"
+                   FontAttributes="Bold"/>
+
+            <Label Text="• Within Settings you can:"
+                   FontAttributes="Bold" />
+
+            <Label Text="   - Log In"/>
+            <Label Text="   - Sign Up"/>
+            <Label Text="   - Change the Local Settings"/>
+            <Label Text="   - Check Player Stats"/>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

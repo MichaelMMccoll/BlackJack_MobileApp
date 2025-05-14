@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="assignment_2425.Views.LoginPage"
+             Title="LoginPage">
+
+    <Grid>
+
+        <ImageButton Source="{DynamicResource BackButton}"
+                     HeightRequest="{DynamicResource IconWidthSize}"
+                     WidthRequest="{DynamicResource IconHeightSize}"
+                     Command="{Binding BackCommand}"
+                     Margin="0,5,0,0"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"/>
+        <!-- email and password box-->
+        <VerticalStackLayout HorizontalOptions="Center"
+                             VerticalOptions="Center">
+
+            <Entry x:Name="email"
+                   Opacity="0.7"
+                   Placeholder="Email"
+                   WidthRequest="{DynamicResource InputBoxWidth}"
+                   MaximumWidthRequest="{DynamicResource InputBoxWidth}"
+                   Text="{Binding Email}"/>
+
+            <Entry x:Name="password"
+                   Opacity="0.7"
+                   IsPassword="True"
+                   Placeholder="Password"
+                   Text="{Binding Password}"/>
+
+            <Button Text="Login"
+                    WidthRequest="{DynamicResource ButtonBoxWidth}"
+                    MaximumWidthRequest="{DynamicResource ButtonBoxWidth}"
+                    Command="{Binding LoginCommand}"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
